@@ -71,20 +71,77 @@
             <h2 class="border-1 border-bottom border-dark">The Code for Rewind</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <!-- Embedded Code From App -->
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hellow World
-                        function HelloWorld() {
-                            alert("Hellow World!");
+                        // Error Messages
+                        let emptyError = "Please enter a value.";
+
+                        // Get entered value
+                        function getValue() {
+                            let userInput = document.getElementById("userString");
+                            
+                            if(userInput.value == "" || userInput == null) {
+                                let errorHeading = document.getElementById("alert-heading");
+                                let errorMessage = document.getElementById("msg");
+                                let alertBox = document.getElementById("alert");
+
+                                errorHeading.innerHTML = "Error!";
+                                errorMessage.innerHTML = emptyError;
+                                alertBox.classList.remove("alert-success");
+                                alertBox.classList.add("alert-danger");
+                                alertBox.classList.remove("invisible");
+                            }else {
+                                reverseString(userInput.value);
+                            }
+                        }
+
+                        // Reverse string
+                        function reverseString(userInput) {
+                            // Split the input into an array with .split(). 
+                            // .split("") includes all characters in the string.
+                            let reverseStr = userInput.split("");
+                            // Reverse the array with .reverse() and then convert it to a string
+                            // with .join().
+                            reverseStr = reverseStr.reverse().join("");
+                            
+                            displayResults(reverseStr);
+                        }
+
+                        // Display message
+                        function displayResults(output) {
+                            let alertHeading = document.getElementById("alert-heading");
+                            let alertMessage = document.getElementById("msg");
+                            let alertBox = document.getElementById("alert");
+
+                            alertHeading.innerHTML = "Your Reversed String";
+                            alertMessage.innerHTML = output;
+                            alertBox.classList.add("alert-success");
+                            alertBox.classList.remove("alert-danger");
+                            alertBox.classList.remove("invisible");
                         }
                     </code>
                     </pre>
                 </div>
                 <!-- Description Of Code -->
-                <div class="col-lg-4">
-                    <p>The code is structed in one function.</p>
-                    <h5>HellowWorld()</h5>
-                    <p>HellowWorld() is a fucntion that displays an alert with a message of "Hellow World!".</p>
+                <div class="col-lg-3">
+                    <p>The code is structured in three functions.</p>
+                    <h5>1. getValue()</h5>
+                    <p>getValue() is a function that collects the value from the form.</p>
+                    <p>The input is validated to make sure it is not empty or null. If it is, an error is displayed.</p>
+                    <P>If the input is valid, it is passed to <strong>reverseString()</strong>.</P>
+                    <h5>2. reverseString(String userInput)</h5>
+                    <p><strong>Parameters</strong></p>
+                    <ul>
+                        <li>String: userInput</li>
+                    </ul>
+                    <p><strong>reverseString()</strong> takes in the user's input, converts it to an array via the <strong>split()</strong> function.</p>
+                    <p>Then we use the <strong>.reverse()</strong> function to reverse the array and then the <strong>.join()</strong> function to convert the array into a string again..</p>
+                    <h5>3. displayResults(String output)</h5>
+                    <p><strong>Parameters</strong></p>
+                    <ul>
+                        <li>String: output</li>
+                    </ul>
+                    <p><strong>displayResults()</strong> uses Javascript to display an alert by modifying CSS attributes and showing the reversed input.</p>
                 </div>
             </div>
         </div>
